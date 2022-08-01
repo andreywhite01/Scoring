@@ -1,5 +1,5 @@
 ﻿
-namespace WinFormsApp1
+namespace Scoring
 {
     partial class Form1
     {
@@ -29,6 +29,7 @@ namespace WinFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -53,21 +54,38 @@ namespace WinFormsApp1
             this.label12 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.picture_result = new System.Windows.Forms.PictureBox();
             this.label_prediction = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_result)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox2
@@ -106,9 +124,9 @@ namespace WinFormsApp1
             this.label11.Font = new System.Drawing.Font("Sitka Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label11.Location = new System.Drawing.Point(30, 407);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(195, 19);
+            this.label11.Size = new System.Drawing.Size(153, 19);
             this.label11.TabIndex = 43;
-            this.label11.Text = "Отношение долга к доходу";
+            this.label11.Text = "Официальный доход";
             // 
             // textBox10
             // 
@@ -235,9 +253,9 @@ namespace WinFormsApp1
             this.label2.Font = new System.Drawing.Font("Sitka Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(30, 146);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(288, 19);
+            this.label2.Size = new System.Drawing.Size(233, 19);
             this.label2.TabIndex = 27;
-            this.label2.Text = "Стоимость Вашего текущего имущества";
+            this.label2.Text = "Стоимость текущего имущества";
             // 
             // textBox2
             // 
@@ -252,9 +270,9 @@ namespace WinFormsApp1
             this.label1.Font = new System.Drawing.Font("Sitka Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(30, 88);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 19);
+            this.label1.Size = new System.Drawing.Size(196, 19);
             this.label1.TabIndex = 25;
-            this.label1.Text = "Введите сумму желаемого кредита";
+            this.label1.Text = "Сумма желаемого кредита";
             // 
             // textBox1
             // 
@@ -275,113 +293,27 @@ namespace WinFormsApp1
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(619, 331);
+            this.button1.Location = new System.Drawing.Point(632, 350);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 70);
+            this.button1.Size = new System.Drawing.Size(80, 80);
             this.button1.TabIndex = 48;
-            this.button1.Text = "SCORE";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Sitka Small", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(339, 9);
+            this.label13.Location = new System.Drawing.Point(231, 9);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(167, 54);
+            this.label13.Size = new System.Drawing.Size(388, 54);
             this.label13.TabIndex = 49;
-            this.label13.Text = "Анкета";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(520, 120);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(0, 15);
-            this.label14.TabIndex = 50;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(520, 149);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(0, 15);
-            this.label15.TabIndex = 51;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(520, 236);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(0, 15);
-            this.label16.TabIndex = 52;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(520, 262);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(0, 15);
-            this.label17.TabIndex = 53;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(520, 295);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(0, 15);
-            this.label18.TabIndex = 54;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(520, 324);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(0, 15);
-            this.label19.TabIndex = 55;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(520, 353);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(0, 15);
-            this.label20.TabIndex = 56;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(520, 208);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(0, 15);
-            this.label21.TabIndex = 57;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(520, 178);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(0, 15);
-            this.label22.TabIndex = 58;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(520, 411);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(0, 15);
-            this.label24.TabIndex = 60;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(520, 382);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(0, 15);
-            this.label25.TabIndex = 61;
+            this.label13.Text = "Анкета заемщика";
             // 
             // label26
             // 
@@ -400,44 +332,179 @@ namespace WinFormsApp1
             this.textBox11.Size = new System.Drawing.Size(100, 23);
             this.textBox11.TabIndex = 62;
             // 
-            // label27
+            // pictureBox1
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(520, 91);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(0, 15);
-            this.label27.TabIndex = 64;
+            this.pictureBox1.Location = new System.Drawing.Point(470, 88);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.TabIndex = 66;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(470, 117);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox2.TabIndex = 67;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(470, 146);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox3.TabIndex = 68;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(512, 204);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox4.TabIndex = 69;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Location = new System.Drawing.Point(512, 175);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox5.TabIndex = 70;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Location = new System.Drawing.Point(470, 233);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox6.TabIndex = 71;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Location = new System.Drawing.Point(470, 262);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox7.TabIndex = 72;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Location = new System.Drawing.Point(470, 291);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox8.TabIndex = 73;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Location = new System.Drawing.Point(470, 320);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox9.TabIndex = 74;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Location = new System.Drawing.Point(470, 349);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox10.TabIndex = 75;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Location = new System.Drawing.Point(470, 378);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox11.TabIndex = 76;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Location = new System.Drawing.Point(470, 407);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox12.TabIndex = 77;
+            this.pictureBox12.TabStop = false;
+            // 
+            // picture_result
+            // 
+            this.picture_result.Location = new System.Drawing.Point(599, 112);
+            this.picture_result.Name = "picture_result";
+            this.picture_result.Size = new System.Drawing.Size(140, 140);
+            this.picture_result.TabIndex = 79;
+            this.picture_result.TabStop = false;
             // 
             // label_prediction
             // 
             this.label_prediction.AutoSize = true;
-            this.label_prediction.Font = new System.Drawing.Font("Sitka Small", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label_prediction.Location = new System.Drawing.Point(554, 118);
+            this.label_prediction.Font = new System.Drawing.Font("Sitka Small", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_prediction.Location = new System.Drawing.Point(256, 529);
+            this.label_prediction.MaximumSize = new System.Drawing.Size(0, 30);
+            this.label_prediction.MinimumSize = new System.Drawing.Size(0, 30);
             this.label_prediction.Name = "label_prediction";
-            this.label_prediction.Size = new System.Drawing.Size(0, 43);
-            this.label_prediction.TabIndex = 65;
+            this.label_prediction.Size = new System.Drawing.Size(469, 30);
+            this.label_prediction.TabIndex = 80;
+            this.label_prediction.Text = "Заполните и отправьте анкету, чтобы получить результат";
+            this.label_prediction.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Sitka Banner", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(548, 433);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(258, 23);
+            this.label10.TabIndex = 81;
+            this.label10.Text = "Нажмите для получения результата";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Sitka Small", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(29, 527);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(221, 35);
+            this.label14.TabIndex = 82;
+            this.label14.Text = "Ваш результат:";
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(30, 433);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(80, 80);
+            this.button2.TabIndex = 83;
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(800, 493);
+            this.ClientSize = new System.Drawing.Size(818, 597);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label_prediction);
-            this.Controls.Add(this.label27);
+            this.Controls.Add(this.picture_result);
+            this.Controls.Add(this.pictureBox12);
+            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.pictureBox10);
+            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.pictureBox8);
+            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.label20);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label12);
@@ -462,9 +529,23 @@ namespace WinFormsApp1
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Анкета";
+            this.Text = "Анкета заемщика";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_result)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -496,22 +577,25 @@ namespace WinFormsApp1
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox picture_result;
         private System.Windows.Forms.Label label_prediction;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button2;
     }
 }
 
