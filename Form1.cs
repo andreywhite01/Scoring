@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using System.ServiceProcess;
 using System.Threading;
-
+using System.Drawing.Drawing2D;
 
 
 namespace Scoring
@@ -20,6 +16,7 @@ namespace Scoring
     {
         public Form1()
         {
+            
             InitializeComponent();
 
             input_condition_dict.Add(textBox1,    pictureBox1);
@@ -53,6 +50,40 @@ namespace Scoring
                 textBox10,
                 textBox9
             };
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            button1.Click += new EventHandler(Button_StartPrediction);
+            button2.Click += new EventHandler(Button_Refresh);
+            toolStripMenuItemRefreshWindow.Click += new EventHandler(Button_Refresh);
+            toolStripMenuItemCloseWindow.Click += new EventHandler(Button_CloseForm);
+            toolStripMenuItemAboutProgramm.Click += new EventHandler(Button_GetInformation);
+
+            textBox1.TextChanged += new System.EventHandler(Input_Changed);
+            textBox2.TextChanged += new System.EventHandler(Input_Changed);
+            textBox3.TextChanged += new System.EventHandler(Input_Changed);
+            textBox4.TextChanged += new System.EventHandler(Input_Changed);
+            textBox5.TextChanged += new System.EventHandler(Input_Changed);
+            textBox6.TextChanged += new System.EventHandler(Input_Changed);
+            textBox7.TextChanged += new System.EventHandler(Input_Changed);
+            textBox9.TextChanged += new System.EventHandler(Input_Changed);
+            textBox10.TextChanged += new System.EventHandler(Input_Changed);
+            textBox11.TextChanged += new System.EventHandler(Input_Changed);
+            comboBox1.TextChanged += new System.EventHandler(Input_Changed);
+            comboBox2.TextChanged += new System.EventHandler(Input_Changed);
+
+            textBox1.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox2.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox3.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox4.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox5.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox6.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox7.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox9.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox10.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            textBox11.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            comboBox1.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            comboBox2.KeyDown += new KeyEventHandler(TextBox_KeyDown);
         }
 
         private readonly Dictionary<object, PictureBox> input_condition_dict = new Dictionary<object, PictureBox>();
@@ -137,93 +168,138 @@ namespace Scoring
         // Изменяет состояние полей ввода
         private void ChangeInputCondition(object input, bool condition)
         {
-            this.label_prediction.Font = new Font("Sitka Small", 10, FontStyle.Italic);
-            this.label_prediction.ForeColor = Color.Gray;
-            this.label_prediction.Text = "Заполните и отправьте анкету, чтобы получить результат";
+            this.labelPrediction.Font = new Font("Sitka Small", 10, FontStyle.Italic);
+            this.labelPrediction.ForeColor = Color.Gray;
+            this.labelPrediction.Text = "Заполните и отправьте анкету, чтобы получить результат";
             this.picture_result.Image = null;
 
             PictureBox pictureBox = input_condition_dict[input];
 
             if (condition == true)
             {
-                pictureBox.Image = Image.FromFile("pictures\\yes.png");
+                pictureBox.Image = Properties.Resources.yes;
             }
             else
             {
-                pictureBox.Image = Image.FromFile("pictures\\no.png");
+                pictureBox.Image = Properties.Resources.no;
             }
         }
         // В зависимости от работы модели выводит результат на форму
-        private void ChangePredictionLabel(int result)
+        private void ChangePredictionLabel(float result, string model_name)
         {
             if (InvokeRequired)
-                Invoke((Action<int>)ChangePredictionLabel, result);
+                Invoke((Action<float, string>)ChangePredictionLabel, result, model_name);
             else
             {
+                if (result == -1)
+                {
+                    this.picture_result.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                    this.picture_result.Image = Properties.Resources.loading;
+                    return;
+                }
+
+                string str_score = "";
+
+                if (model_name == "RFR_model")
+                {
+                    double threshold = 0.33669679687801124;
+                    int score;
+                    if (result <= threshold)
+                    {
+
+                        score = 100 - (int)Math.Round(result * 50 / threshold);
+                        result = 0;
+                    }
+                    else
+                    {
+                        score = (int)Math.Round((1 - result) * 50 / (1 - threshold));
+                        result = 1;
+                    }
+                    str_score = String.Format("{0}", score);
+                }
+
+                this.labelScore.Text = str_score;
                 if (result == 0)
                 {
-                    this.picture_result.Image = Image.FromFile("pictures\\good.png");
+                    this.picture_result.Image = Properties.Resources.score_bg;
+                    Image arrow = Properties.Resources.arrow;
+                    this.pictureBoxArrow.Image = RotateImage(arrow, 50);
+
                     this.picture_result.Refresh();
 
-                    this.label_prediction.Font = new Font("Sitka Small", 14, FontStyle.Bold);
-                    this.label_prediction.ForeColor = Color.Green;
-                    this.label_prediction.Text = "Кредит одобрен.";
-                    this.label_prediction.Refresh();
+                    this.labelPrediction.Font = new Font("Sitka Small", 14, FontStyle.Bold);
+                    this.labelPrediction.ForeColor = Color.Green;
+                    this.labelPrediction.Text = "Кредит одобрен.";
+                    this.labelPrediction.Refresh();
+
+                    this.labelScore.ForeColor = Color.Green;
                     return;
                 }
                 if (result == 1)
                 {
-                    this.picture_result.Image = Image.FromFile("pictures\\bad.png");
+                    this.picture_result.Image = Properties.Resources.score_bg;
+                    Image arrow = Properties.Resources.arrow;
+                    this.pictureBoxArrow.Image = RotateImage(arrow, 50);
+
                     this.picture_result.Refresh();
 
-                    this.label_prediction.Font = new Font("Sitka Small", 14, FontStyle.Bold);
-                    this.label_prediction.ForeColor = Color.Red;
-                    this.label_prediction.Text = "Кредит не одобрен.";
-                    this.label_prediction.Refresh();
+                    this.labelPrediction.Font = new Font("Sitka Small", 14, FontStyle.Bold);
+                    this.labelPrediction.ForeColor = Color.Red;
+                    this.labelPrediction.Text = "Кредит не одобрен.";
+                    this.labelPrediction.Refresh();
+
+                    this.labelScore.ForeColor = Color.Red;
                     return;
                 }
-                if (result == -1)
-                {
-                    this.picture_result.Image = Image.FromFile("pictures\\loading.gif");
-                    return;
-                }
-                this.label_prediction.ForeColor = Color.Blue;
-                this.label_prediction.Text = "Произошла непредвиденная ошибка";
+                this.labelPrediction.ForeColor = Color.Blue;
+                this.labelPrediction.Text = "Произошла непредвиденная ошибка";
+                return;
             }
         }
-
+        public static Image RotateImage(Image img, float rotationAngle)
+        {
+            Bitmap bmp = new Bitmap(img.Width, img.Height);
+            Graphics gfx = Graphics.FromImage(bmp);
+            gfx.TranslateTransform((float)bmp.Width / 2, (float)bmp.Height / 2);
+            gfx.RotateTransform(rotationAngle);
+            gfx.TranslateTransform(-(float)bmp.Width / 2, -(float)bmp.Height / 2);
+            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            gfx.DrawImage(img, new Point(0, 0));
+            gfx.Dispose();
+            return bmp;
+        }
         private void ThreadMessage()
         {
             MessageBox.Show("Результат скоро отобразится...");
         }
         // Создает 2 потока - вывод сообщения о работе модели и поток для вычислений. В результате работы обращается к методу ChangePredictionLabel
-        private void GetModelPrediction(string filename)
+        private void GetCatBoostPrediction(string input_name, string model_name)
         {
 
             Thread t_message = new Thread(new ThreadStart(ThreadMessage));
             t_message.Start();
 
-            int result = -1;
+            float result = -1;
             ThreadStart thread_model_prediction_start = new ThreadStart(() =>
             {
                 DeactivateElements();
 
                 Process process = new Process();
-                ChangePredictionLabel(result);
+                ChangePredictionLabel(result, model_name);
 
-                process.StartInfo.FileName = Environment.CurrentDirectory + "\\scoring\\dist\\cat_model.exe";
+                process.StartInfo.FileName = Environment.CurrentDirectory + "\\scoring\\dist\\" + model_name + ".exe";
                 process.StartInfo.Arguments = "";
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.RedirectStandardOutput = true;
                 process.StartInfo.RedirectStandardInput = true;
                 process.Start();
 
-                process.StandardInput.WriteLine(Environment.CurrentDirectory + "\\" + filename);
+                process.StandardInput.WriteLine(Environment.CurrentDirectory + "\\" + input_name);
                 string str_result = process.StandardOutput.ReadToEnd();
-                int.TryParse(str_result, out result);
+                result = ConvertStringToFloat(str_result);
                 process.WaitForExit();
 
-                ChangePredictionLabel(result);
+                ChangePredictionLabel(result, model_name);
                 ActivateElements();
             });
 
@@ -232,37 +308,6 @@ namespace Scoring
             thread_model_prediction.Start();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            button1.Click += new EventHandler(Button1_Click);
-            button2.Click += new EventHandler(Button2_Click);
-
-            textBox1.TextChanged += new System.EventHandler(Input_Changed);
-            textBox2.TextChanged += new System.EventHandler(Input_Changed);
-            textBox3.TextChanged += new System.EventHandler(Input_Changed);
-            textBox4.TextChanged += new System.EventHandler(Input_Changed);
-            textBox5.TextChanged += new System.EventHandler(Input_Changed);
-            textBox6.TextChanged += new System.EventHandler(Input_Changed);
-            textBox7.TextChanged += new System.EventHandler(Input_Changed);
-            textBox9.TextChanged += new System.EventHandler(Input_Changed);
-            textBox10.TextChanged += new System.EventHandler(Input_Changed);
-            textBox11.TextChanged += new System.EventHandler(Input_Changed);
-            comboBox1.TextChanged += new System.EventHandler(Input_Changed);
-            comboBox2.TextChanged += new System.EventHandler(Input_Changed);
-
-            textBox1.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox2.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox3.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox4.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox5.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox6.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox7.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox9.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox10.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            textBox11.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            comboBox1.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-            comboBox2.KeyDown += new KeyEventHandler(TextBox_KeyDown);
-        }
         // Обработчик события нажатия на стрелки вниз и вверх внутри textBox
         void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -353,7 +398,7 @@ namespace Scoring
             ChangeInputCondition(sender, IsInputCorrect(sender));
         }
         // Обработчики события нажатия на кнопку
-        private void Button1_Click(object sender, System.EventArgs e)
+        private void Button_StartPrediction(object sender, System.EventArgs e)
         {
             foreach (var item in input_condition_dict)
             {
@@ -391,25 +436,38 @@ namespace Scoring
                 sw.WriteLine("LOAN,MORTDUE,VALUE,DEROG,DELINQ,CLAGE,NINQ,DEBTINC");
                 sw.WriteLine(LOAN + "," + MORTDUE + "," + VALUE + "," + DEROG + "," + DELINQ + "," + CLAGE + "," + NINQ + "," + DEBTINC);
             }
-
-            GetModelPrediction(csv_filename);
+            //if ((Button)sender == button1)
+            GetCatBoostPrediction(csv_filename, "RFR_model");
 
             return;
         }
-        private void Button2_Click(object sender, System.EventArgs e)
+        private void Button_Refresh(object sender, System.EventArgs e)
         {
-            foreach(var item in input_condition_dict)
+            textBox1.Focus();
+            foreach (var item in input_condition_dict)
             {
+                if (item.Key.GetType() == (new TextBox()).GetType())
+                    ((TextBox)item.Key).Text = "";
+
                 item.Value.Image = null;
             }
-            this.label_prediction.Font = new Font("Sitka Small", 10, FontStyle.Italic);
-            this.label_prediction.ForeColor = Color.Gray;
-            this.label_prediction.Text = "Заполните и отправьте анкету, чтобы получить результат";
-            this.picture_result.Image = null;
+            this.labelPrediction.Font = new Font("Sitka Small", 10, FontStyle.Italic);
+            this.labelPrediction.ForeColor = Color.Gray;
+            this.labelPrediction.Text = "Заполните и отправьте анкету, чтобы получить результат";
+
+            this.labelScore.Text = "";
 
             this.picture_result.Image = null;
         }
-
+        private void Button_CloseForm(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void Button_GetInformation(object sender, EventArgs e)
+        {
+            AboutBox1 aboutProgramm = new AboutBox1();
+            aboutProgramm.ShowDialog();
+        }
         // Активация/деакивация элементов на форме во время работы модели
         private void DeactivateElements()
         {
